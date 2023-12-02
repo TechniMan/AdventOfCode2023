@@ -12,6 +12,7 @@ class Day02 : ISolution {
 
         /// 2 - CALCULATE ANSWER
         var answer1 = 0;
+        var answer2 = 0;
         // foreach game
         for (int gameId = 1; gameId < 101; gameId++) {
             // get sets of cubes
@@ -41,6 +42,7 @@ class Day02 : ISolution {
                 }
             }
 
+            // PART 1
             // check game is possible for criteria
             var possible = true;
             // if any quantity of colour is greater than the limits, then it's an impossible game
@@ -54,9 +56,17 @@ class Day02 : ISolution {
             if (possible) {
                 answer1 += gameId;
             }
+
+            // PART 2
+            var power = 1;
+            foreach (var quantity in highestGameCubes.Values) {
+                power *= quantity;
+            }
+            answer2 += power;
         }
 
         /// 3 - OUTPUT ANSWER
         Console.WriteLine($"Part 1: {answer1}");
+        Console.WriteLine($"Part 2: {answer2}");
     }
 }
