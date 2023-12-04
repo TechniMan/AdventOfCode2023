@@ -7,8 +7,8 @@ public abstract class ISolution
     /// </summary>
     /// <param name="number">The name of the input file.</param>
     /// <returns></returns>
-    public static string[] GetInput(string number)
+    public static List<string> GetInput(string number)
     {
-        return File.ReadAllLines($"inputs/{number}.txt");
+        return File.ReadAllLines($"inputs/{number}.txt").ToList();
     }
 }
