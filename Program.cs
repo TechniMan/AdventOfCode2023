@@ -4,6 +4,7 @@
             { "1", Day01.Solve },
             { "2", Day02.Solve },
             { "3", Day03.Solve },
+            { "4", Day04.Solve },
         };
 
         static void Main(string[] args) {
