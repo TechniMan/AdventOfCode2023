@@ -47,7 +47,6 @@ class Day05: ISolution {
         // map reading:
         // destinationStart sourceStart rangeLength
 
-        #region create the maps
         var seedToSoilMap = new Mapping();
         for (var l = 3; l < 32; ++l) {
             var split = input[l].Split(' ').Select(long.Parse).ToList();
@@ -97,10 +96,9 @@ class Day05: ISolution {
             var destinationRange = new Mapping.LongRange(split[0], split[0] + split[2]);
             humidityToLocationMap.Ranges.Add(sourceRange, destinationRange);
         }
-        #endregion
 
-        // now use the maps
-        var lowestLocation = long.MaxValue;
+        // PART 1 - use the maps on the basic seed list
+        var answer1 = long.MaxValue;
         foreach (var seed in initialSeeds) {
             // follow this number through each map until we reach the end
             var soil = seedToSoilMap.MappingFor(seed);
@@ -111,13 +109,36 @@ class Day05: ISolution {
             var humidity = temperatureToHumidityMap.MappingFor(temperature);
             var location = humidityToLocationMap.MappingFor(humidity);
 
-            if (location < lowestLocation) {
-                lowestLocation = location;
+            if (location < answer1) {
+                answer1 = location;
             }
         }
-
-        // find answer
-        var answer1 = lowestLocation;
         Console.WriteLine($"Part 1: {answer1}");
+
+        // PART 2 - use the maps on the advanced seed list
+        var answer2 = long.MaxValue;
+        // each [start, length] pair of 'seed' numbers defines a range
+        for (var idx = 0; idx < initialSeeds.Count; idx += 2) {
+            // for each seed number in the range
+            for (var seed = initialSeeds[idx]; seed < initialSeeds[idx] + initialSeeds[idx + 1]; ++seed) {
+                // follow this number through each map until we reach the end
+                var soil = seedToSoilMap.MappingFor(seed);
+                var fertiliser = soilToFertiliserMap.MappingFor(soil);
+                var water = fertiliserToWaterMap.MappingFor(fertiliser);
+                var light = waterToLightMap.MappingFor(water);
+                var temperature = lightToTemperatureMap.MappingFor(light);
+                var humidity = temperatureToHumidityMap.MappingFor(temperature);
+                var location = humidityToLocationMap.MappingFor(humidity);
+
+                if (location < answer2) {
+                    answer2 = location;
+                }
+                if (seed % 1000000 == 0) {
+                    Console.Write($"{initialSeeds[idx]} / {seed} / {initialSeeds[idx] + initialSeeds[idx + 1]}\r");
+                }
+            }
+            Console.WriteLine($"{idx / 2} / {initialSeeds.Count / 2}");
+        }
+        Console.WriteLine($"Part 2: {answer2}");
     }
 }
