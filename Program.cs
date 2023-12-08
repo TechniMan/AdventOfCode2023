@@ -8,6 +8,7 @@ internal class Program {
         { "4", Day04.Solve },
         { "5", Day05.Solve },
         { "6", Day06.Solve },
+        { "7", Day07.Solve },
     };
 
     static void Main(string[] args) {

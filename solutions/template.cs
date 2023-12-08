@@ -1,6 +1,6 @@
 namespace AdventOfCode2023;
 
-class template: ISolution {
+class Template: ISolution {
     public static void Solve() {
         var input = GetInput("X");
 
