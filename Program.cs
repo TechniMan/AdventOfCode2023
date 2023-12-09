@@ -1,7 +1,7 @@
 ﻿namespace AdventOfCode2023;
 
 internal class Program {
-    static Dictionary<string, Action> Days = new() {
+    static readonly Dictionary<string, Action> Days = new() {
         { "1", Day01.Solve },
         { "2", Day02.Solve },
         { "3", Day03.Solve },
@@ -9,6 +9,7 @@ internal class Program {
         { "5", Day05.Solve },
         { "6", Day06.Solve },
         { "7", Day07.Solve },
+        { "8", Day08.Solve },
     };
 
     static void Main(string[] args) {
