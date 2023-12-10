@@ -1,6 +1,7 @@
 ﻿namespace AdventOfCode2023;
 
-internal class Program {
+internal class Program
+{
     static readonly Dictionary<string, Action> Days = new() {
         { "1", Day01.Solve },
         { "2", Day02.Solve },
@@ -11,15 +12,19 @@ internal class Program {
         { "7", Day07.Solve },
         { "8", Day08.Solve },
         { "9", Day09.Solve },
+        { "10", Day10.Solve },
     };
 
-    static void Main(string[] args) {
-        if (args.Length != 1) {
+    static void Main(string[] args)
+    {
+        if (args.Length != 1)
+        {
             Console.WriteLine($"Invalid args: {string.Join(", ", args)}.");
             return;
         }
 
-        if (!Days.ContainsKey(args[0])) {
+        if (!Days.ContainsKey(args[0]))
+        {
             Console.WriteLine($"Unrecognised puzzle ID: {args[0]}.");
         }
 
