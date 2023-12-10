@@ -4,7 +4,7 @@ class Day10 : ISolution
 {
     public static void Solve()
     {
-        var maze = GetInput("09");
+        var maze = GetInput("10");
 
         // interpret the maze
 

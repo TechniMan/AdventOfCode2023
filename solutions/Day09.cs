@@ -4,7 +4,7 @@ class Day09 : ISolution
 {
   public static void Solve()
   {
-    var input = GetInput("08");
+    var input = GetInput("09");
 
     var answer1 = 0L;
     var answer2 = 0L;
