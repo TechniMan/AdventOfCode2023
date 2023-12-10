@@ -10,7 +10,7 @@ internal class Program
         { "5", Day05.Solve },
         { "6", Day06.Solve },
         { "7", Day07.Solve },
-        { "8", Day08.Solve },
+        // { "8", Day08.Solve },
         { "9", Day09.Solve },
         { "10", Day10.Solve },
     };

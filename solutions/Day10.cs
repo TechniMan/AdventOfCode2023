@@ -5,15 +5,15 @@ class Day10 : ISolution
     public static void Solve()
     {
         var maze = GetInput("10");
-
-        // interpret the maze
+        var MAZE_SIZE = 140;
+        var secondaryMaze = new bool[MAZE_SIZE, MAZE_SIZE];
 
         // find S tile
         var x = 0;
         var y = 0;
-        for (y = 0; y < maze.Count; ++y)
+        for (y = 0; y < MAZE_SIZE; ++y)
         {
-            for (x = 0; x < maze[0].Length; ++x)
+            for (x = 0; x < MAZE_SIZE; ++x)
             {
                 if (maze[y][x] == 'S')
                 {
@@ -35,6 +35,7 @@ class Day10 : ISolution
         {
             totalSteps++;
             var symbol = maze[y][x];
+            secondaryMaze[y, x] = true;
 
             switch (symbol)
             {
@@ -137,5 +138,15 @@ class Day10 : ISolution
 
         var answer1 = totalSteps / 2;
         Console.WriteLine($"Part 1: {answer1}");
+
+        for (y = 0; y < MAZE_SIZE; ++y)
+        {
+            for (x = 0; x < MAZE_SIZE; ++x)
+            {
+                // Console.Write(secondaryMaze[y, x] ? "#" : ".");
+                Console.Write(secondaryMaze[y, x] ? maze[y][x] : '.');
+            }
+            Console.WriteLine();
+        }
     }
 }
