@@ -1,0 +1,11 @@
+{
+    "[csharp]": {
+        "editor.maxTokenizationLineLength": 2500,
+        "editor.inlineSuggest.suppressSuggestions": false,
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "editor.formatOnPaste": true,
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    }
+}
