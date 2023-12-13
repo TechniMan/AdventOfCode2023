@@ -53,6 +53,7 @@ class Day11 : ISolution
 
         //TODO do the math
         var answer1 = 0;
+        var answer2 = 0L;
         for (var g = 0; g < catalogue.Count - 1; ++g)
         {
             for (var h = g + 1; h < catalogue.Count; ++h)
@@ -61,8 +62,9 @@ class Day11 : ISolution
                 var galaxy2 = catalogue[h];
                 // find the distance for this pair
                 answer1 += galaxy2 - galaxy1;
+                answer2 += galaxy2 - galaxy1;
 
-                // ill-advised method to add expansion on
+                // extremely wise method to add expansion on
                 var lowY = 0;
                 var highY = 0;
                 if (galaxy1.Position.Y < galaxy2.Position.Y)
@@ -93,6 +95,7 @@ class Day11 : ISolution
                     if (expandedRows[y])
                     {
                         answer1++;
+                        answer2 += 999999;
                     }
                 }
                 for (var x = lowX; x < highX; ++x)
@@ -100,11 +103,13 @@ class Day11 : ISolution
                     if (expandedCols[x])
                     {
                         answer1++;
+                        answer2 += 999999;
                     }
                 }
             }
         }
 
         Console.WriteLine($"Part 1: {answer1}");
+        Console.WriteLine($"Part 2: {answer2}");
     }
 }
