@@ -41,10 +41,11 @@ class Day14 : ISolution
 
             // start the y at the space above the rock unless we're already at the top
             //  we don't want the rock itself to block our movement
-            var y = rock.Y > 0 ? rock.Y - 1 : 0;
+            var y = rock.Y;
             while (true)
             {
-                if (y == 0) break;
+                y--;
+                if (y <= 0) { y = 0; break; }
                 if (map[y, rock.X])
                 {
                     // we've found a space blocking the rock
@@ -52,11 +53,17 @@ class Day14 : ISolution
                     y++;
                     break;
                 }
-                y--;
             }
             // move it, inc. updating collision map
             map[rock.Y, rock.X] = false;
-            map[y, rock.X] = true;
+            try
+            {
+                map[y, rock.X] = true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"{y}, {rock.X}");
+            }
             rocks[r] = new Point(rock.X, y);
             // add 'load' to answer1
             var load = MAP_WIDTH - y;
@@ -64,10 +71,12 @@ class Day14 : ISolution
         }
 
         // print out the new map
+        var cumulativeLoad = 0;
+        Console.WriteLine($"{' ',100} | lod * rks = line | cumulativeLoad");
         for (var y = 0; y < input.Count; ++y)
         {
             // create the line of the map after the tilt
-            var line = string.Join("", Enumerable.Repeat('.', MAP_WIDTH));
+            var line = "".PadLeft(MAP_WIDTH, '.');
 
             // fill in the square rocks
             for (var x = 0; x < MAP_WIDTH; ++x)
@@ -90,10 +99,13 @@ class Day14 : ISolution
             }
 
             // print the map
-            Console.WriteLine(line);
+            var lineLoad = lineRocks.Count() * (MAP_WIDTH - y);
+            cumulativeLoad += lineLoad;
+            Console.WriteLine($"{line} | {MAP_WIDTH - y,3} * {lineRocks.Count(),3} = {lineLoad,4} | {cumulativeLoad,6}");
         }
 
         // 106328 too high
+        // 106267 too high
         Console.WriteLine($"Part 1: {answer1}");
     }
 }

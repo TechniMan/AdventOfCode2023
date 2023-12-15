@@ -17,6 +17,7 @@ internal class Program
         { "12", Day12.Solve },
         // { "13", Day13.Solve },
         { "14", Day14.Solve },
+        { "15", Day15.Solve },
     };
 
     static void Main(string[] args)
